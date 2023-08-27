@@ -1,17 +1,16 @@
 # svdom
-### Web Components without drama 🍿
+#### Web Components without drama 🍿
 
+<br />
 
 **NOTE:** This repository is intended for personal use and is not yet ready for production projects. Please use it at your own risk. 🚨
 
 
-<br />
 
 ### Why
 
 This project stems from the necessity to wield potent and efficient tools for my personal projects and experiments, all while sidestepping the boilerplate overhead that often accompanies the initiation of a new JavaScript web project.
 
-<br />
 
 ### What
 
@@ -26,7 +25,6 @@ My objectives are centered around:
 - A DX akin to that of contemporary JavaScript libraries and their paradigms.
 - Creating reactive components that dynamically respond to state changes.
 
-<br />
 
 ### How
 
