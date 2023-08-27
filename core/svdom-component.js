@@ -1,4 +1,4 @@
-import { dashify, getListenerInfo } from './utils.js'
+import { dashify, parseListener } from './utils.js'
 
 /**
  * VSDom
@@ -29,9 +29,11 @@ export const SVDOMComponent = (SuperClass /** @type {HTMLElement} */) =>
     /** @type {HTMLElement} */
     VSDOM = undefined
     /** @type {[key: string]: unkown} */
-    internalEventListeners = {}
+    // internalEventListeners = {}
     /** @type {[key: string]: unkown} */
     state = undefined
+    /** @type {name: unkown} */
+    props = {}
     /** @type {HTMLDivElement} */
     component = undefined
     /** @type {HTMLTemplateElement} */
@@ -43,16 +45,14 @@ export const SVDOMComponent = (SuperClass /** @type {HTMLElement} */) =>
       // Get component registration name
       this.name = dashify(this.constructor.name)
 
-      super.attachShadow({ mode: 'open' })
+      this.shadow = super.attachShadow({ mode: 'closed' })
+      this.internals = super.attachInternals()
 
       // KISS state handling
       this.state = Object.freeze(this.constructor.state || {})
 
       this.setState = this.constructor.setState.bind(this)
       this.setStateProp = this.constructor.setStateProp.bind(this)
-
-      this.internals = super.attachInternals()
-      this.shadow = super.shadowRoot
 
       // Set the component and the stylesheet
       this.constructor.setComponentContainer.call(this)
@@ -63,18 +63,32 @@ export const SVDOMComponent = (SuperClass /** @type {HTMLElement} */) =>
      * First time component initialization we need to render all the markup
      */
     connectedCallback() {
+      this.setProperties.call(this)
       super.connectedCallback?.()
       this.onConnected?.()
 
       this.constructor.render.call(this)
-      this.constructor.saveInitialEventListeners.call(this)
+      this.constructor.addInitialEventListeners.call(this)
     }
 
     /**
      * @internal
      * @todo
      */
+    // eslint-disable-next-line no-unused-vars
     attributeChangedCallback(prop, next, prev) {}
+
+    setProperties() {
+      if (this.attributes.length > 0) {
+        Array.from(this.attributes).forEach((attr) => {
+          this.props = {
+            ...this.constructor.props,
+            ...this.props,
+            [attr.name]: attr.value,
+          }
+        })
+      }
+    }
 
     /**
      * @internal
@@ -239,7 +253,7 @@ export const SVDOMComponent = (SuperClass /** @type {HTMLElement} */) =>
      * Attach the events to the element.
      * To make it work, we need to set the events we want to attach (and listen).
      */
-    static saveInitialEventListeners() {
+    static addInitialEventListeners() {
       const all = this.shadow.querySelectorAll('*')
       const nodes = Array.from(all).filter((node) => node.nodeType !== 3)
 
@@ -249,37 +263,13 @@ export const SVDOMComponent = (SuperClass /** @type {HTMLElement} */) =>
           .filter((name) => name.startsWith('@'))
 
         for (const attr of attrs) {
-          if (!node.id) {
-            throw new Error(
-              'WebComponent: All elements with events must have id attribute and must be unique.'
-            )
-          }
           const type = attr.substring(1).toLowerCase()
           const listener = node.getAttribute(attr)
-          const [name, args] = getListenerInfo(listener)
-          this.internalEventListeners[node.id] = {
-            type,
-            event: this[name],
-            args,
-          }
-
+          const { name, args } = parseListener(listener)
           node.addEventListener(type, (event) => {
-            this[name](event, args)
+            this[name](event, ...args)
           })
         }
       }
-    }
-
-    /**
-     * @internal
-     * Caching event listeners for better handling
-     */
-    static setInternalEventListeners() {
-      Object.keys(this.internalEventListeners).forEach((key) => {
-        const { type, event, args } = this.internalEventListeners[key]
-        const node = this.shadow.querySelector(`#${key}`)
-
-        node.addEventListener(type, (e) => event(e, args))
-      })
     }
   }

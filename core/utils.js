@@ -16,11 +16,20 @@ export function html(strings, ...props) {
 export const css = html
 
 // Improving performance
-export function getListenerInfo(listener) {
-  const name = listener.split('(')[0]
-  const args = getArgumentsFromString(listener).split(',')
+export function parseListener(listener) {
+  if (listener.startsWith('() =>')) {
+    const matches = listener.match(/([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\(([^)]*)\)/)
 
-  return [name, args]
+    if (matches && matches.length === 3) {
+      const name = matches[1].trim()
+      const args = matches[2].split(',')
+      return { name, args }
+    }
+  } else {
+    const name = listener.split('(')[0]
+    const args = getArgumentsFromString(name).split(',')
+    return { name, args }
+  }
 }
 
 export function getArgumentsFromString(string) {
@@ -37,3 +46,5 @@ export function getArgumentsFromString(string) {
 export function dashify(camel) {
   return camel.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
 }
+
+export const shortID = () => Math.random().toString(36).slice(2, 6) + '_'
