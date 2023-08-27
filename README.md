@@ -1,6 +1,8 @@
-<img src="./examples/src/logo.svg" alt="svdom logo" width="200px" />
 
 # svdom
+
+<img src="./examples/src/logo.svg" alt="svdom logo" width="200px" />
+
 #### Web Components without drama 🍿
 
 <br />
