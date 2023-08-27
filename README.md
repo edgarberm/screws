@@ -1,3 +1,5 @@
+<img src="./examples/src/logo.svg" alt="svdom logo" width="200px" />
+
 # svdom
 #### Web Components without drama 🍿
 
@@ -120,6 +122,8 @@ export class AppComponent extends SVDOMComponent(HTMLElement) {
 
 customElements.define('app-component', AppComponent)
 ```
+
+<br />
 
 If you want to test it out or play with it, you only need to clone the repo, go to the "examples" folder, and run it. You don't need to install anything or transpile the code; you only need a server like the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VSCode extension.
 
