@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Shadow Virtual DOM</title>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        font-family: 'SF Pro Text', 'SF Pro Display', -apple-system,
+          BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+          'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-size: 14px;
+        background-color: #fefefe;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .wrapper {
+        padding: 0 20px;
+      }
+    </style>
+
+    <script type="module" src="index.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <app-component></app-component>
+    </div>
+  </body>
+</html>
