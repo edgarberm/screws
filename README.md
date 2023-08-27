@@ -1,5 +1,5 @@
 
-# svdom
+# SVDOM
 
 <img src="./examples/src/logo.svg" alt="svdom logo" width="200px" />
 
@@ -7,7 +7,7 @@
 
 <br />
 
-**NOTE:** This repository is intended for personal use and is not yet ready for production projects. Please use it at your own risk. 🚨
+**NOTE:** This repos is intended for personal use and is not yet ready for production projects. Please use it at your own risk. 🚨
 
 
 
