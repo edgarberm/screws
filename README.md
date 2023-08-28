@@ -15,9 +15,7 @@ Web Components without drama 🍿
 
 <br />
 
-<p align="center">
-  **NOTE:** This repos is intended for personal use and is not yet ready for production projects. Please use it at your own risk. 🚨
-</p>
+> **NOTE:** This repos is intended for personal use and is not yet ready for production projects. Please use it at your own risk. 🚨
 
 <br />
 
