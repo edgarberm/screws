@@ -1,4 +1,4 @@
-import { SVDOMComponent, html, css } from '../../core/index.js'
+import { ScrewComponent, html, css } from '../../core/index.js'
 
 // Import child components
 import './button.js'
@@ -92,7 +92,7 @@ const style = css`
 /**
  * This class extends form our Component base class
  */
-export class AppComponent extends SVDOMComponent(HTMLElement) {
+export class AppComponent extends ScrewComponent(HTMLElement) {
   /**
    * @property
    * Set the stylesheet

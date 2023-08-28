@@ -1,8 +1,8 @@
 import { css, html, shortID } from './utils.js'
-import { SVDOMComponent } from './svdom-component.js'
+import { ScrewComponent } from './screw-component.js'
 
 export {
-  SVDOMComponent,
+  ScrewComponent,
   html,
   css,
   shortID

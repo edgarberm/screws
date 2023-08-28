@@ -1,4 +1,4 @@
-import { SVDOMComponent, html, css, shortID } from '../../core/index.js'
+import { ScrewComponent, html, css, shortID } from '../../core/index.js'
 
 const style = css`
   :host {
@@ -45,7 +45,7 @@ const style = css`
   }
 `
 
-export class ButtonComponent extends SVDOMComponent(HTMLElement) {
+export class ButtonComponent extends ScrewComponent(HTMLElement) {
   static style = style
 
   static props = {

@@ -1,4 +1,4 @@
-import { SVDOMComponent, html, css } from '../../core/index.js'
+import { ScrewComponent, html, css } from '../../core/index.js'
 
 const style = css`
   p {
@@ -18,7 +18,7 @@ const style = css`
   }
 `
 
-export class CircleComponent extends SVDOMComponent(HTMLElement) {
+export class CircleComponent extends ScrewComponent(HTMLElement) {
   static style = style
 
   static state = {

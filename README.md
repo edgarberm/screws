@@ -1,9 +1,17 @@
 
-# SVDOM
 
-<img src="./examples/src/logo.svg" alt="svdom logo" width="200px" />
+<p align="center">
+  <img src="./examples/src/screws-logo.svg" alt="screws logo" width="40px" />
+</p>
 
-#### Web Components without drama 🍿
+<h1 align="center">
+  Screws
+</h1>
+
+<h4 align="center">
+Web Components without drama 🍿
+</h4>
+
 
 <br />
 
@@ -18,9 +26,9 @@ This project stems from the necessity to wield potent and efficient tools for my
 
 ### What
 
-**svdom** is rooted in [web components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) technology and introduces a lightweight layer for node reconciliation within the Shadow DOM, yielding superior performance and a more seamless DX.
+**screws** is rooted in [web components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) technology and introduces a lightweight layer for node reconciliation within the Shadow DOM, yielding superior performance and a more seamless DX.
 
-The core essence of svdom is to offer an uncomplicated and effective approach to crafting custom elements on the web, all while harnessing the advantages of both shadow and virtual DOMs.
+The core essence of screws is to offer an uncomplicated and effective approach to crafting custom elements on the web, all while harnessing the advantages of both shadow and virtual DOMs.
 
 My objectives are centered around:
 
@@ -32,7 +40,7 @@ My objectives are centered around:
 
 ### How
 
-To give you a taste of how **svdom** works, here's a simple example of creating a custom element using this project:
+To give you a taste of how **screws** works, here's a simple example of creating a custom element using this project:
 
 ```js
 import './circle.js'
@@ -65,7 +73,7 @@ const style = css`
   }
 `
 
-export class AppComponent extends SVDOMComponent(HTMLElement) {
+export class AppComponent extends ScrewComponent(HTMLElement) {
   static style = style
 
   static state = {

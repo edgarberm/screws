@@ -1,10 +1,6 @@
 import { dashify, parseListener } from './utils.js'
 
-/**
- * VSDom
- *
- * Web Components without drama 🍿
- */
+
 const PARSER = 'text/html'
 
 /**
@@ -18,7 +14,7 @@ const PARSER = 'text/html'
  *
  * @type {WebComponent}
  * */
-export const SVDOMComponent = (SuperClass /** @type {HTMLElement} */) =>
+export const ScrewComponent = (SuperClass /** @type {HTMLElement} */) =>
   class extends SuperClass {
     /** @type {string} */
     name = undefined
