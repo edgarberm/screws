@@ -76,6 +76,8 @@ function create_component() {
         echo -e "${RED}Please choose a different name.${RESET}"
         echo ""
       else
+        path=$(dirname "$full_path")
+
         mkdir -p "$path"
         
         touch "$full_path"
@@ -87,12 +89,12 @@ function create_component() {
         done
         
         # core/index.js path
-        depth=$(($(echo "$path" | tr '/' '\n' | wc -l) - 1))
+        IFS='/' read -ra elements <<< "$full_path"
         core_path=""
-        for ((i=1; i<=$depth; i++)); do
+        for ((i = 0; i < ${#elements[@]} - 1; i++)); do
           core_path+="../"
         done
-        core_path+="core/index.js"
+        core_path+="index.js"
         
         template=$(cat <<- EOM
 import { ScrewComponent, html, css } from '$core_path'
