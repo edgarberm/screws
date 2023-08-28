@@ -18,6 +18,7 @@ Web Components without drama 🍿
 > 🚨 **NOTE:** This is **not** another JavaScript framework/lib to build web components. This repo is designed for personal use and is not yet suitable for production projects. Please proceed with caution and use it at your own discretion.
 
 <br />
+
 ### Why
 
 This project stems from the necessity to wield potent and efficient tools for my personal projects and experiments, all while sidestepping the boilerplate overhead that often accompanies the initiation of a new JavaScript web project.
