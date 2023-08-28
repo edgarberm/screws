@@ -23,7 +23,7 @@ export const ScrewComponent = (SuperClass /** @type {HTMLElement} */) =>
     /** @type {ShadowRoot} */
     shadow = undefined
     /** @type {HTMLElement} */
-    VSDOM = undefined
+    SVDOM = undefined
     /** @type {[key: string]: unkown} */
     // internalEventListeners = {}
     /** @type {[key: string]: unkown} */
@@ -132,12 +132,12 @@ export const ScrewComponent = (SuperClass /** @type {HTMLElement} */) =>
      */
     static render() {
       if (!this.component) return
-      this.VSDOM = this.render?.()
+      this.SVDOM = this.render?.()
       // console.log(JSON.parse(JSON.stringify(this.vsdom)))
       const currentContent = this.component.innerHTML
 
-      if (this.VSDOM !== currentContent) {
-        this.component.innerHTML = this.VSDOM
+      if (this.SVDOM !== currentContent) {
+        this.component.innerHTML = this.SVDOM
       }
     }
 
@@ -156,14 +156,14 @@ export const ScrewComponent = (SuperClass /** @type {HTMLElement} */) =>
       // console.time()
       const nextVSDOM = this.render?.()
 
-      if (this.VSDOM !== nextVSDOM) {
+      if (this.SVDOM !== nextVSDOM) {
         const nextDOM = new DOMParser().parseFromString(nextVSDOM, PARSER)
 
         this.reconciliateDOMNodes(
           this.component.firstElementChild,
           nextDOM.body.firstChild
         )
-        this.VSDOM = nextVSDOM
+        this.SVDOM = nextVSDOM
       }
 
       // console.timeEnd()
