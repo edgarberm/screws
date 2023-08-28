@@ -61,7 +61,7 @@ export class ButtonComponent extends ScrewComponent(HTMLElement) {
   }
 
   /**
-   * Is not needed set the events to this DOM becauso the SVDOM component
+   * Is not needed set the events to this DOM becauso the Screw component
    * automatically adds the events to the custom element. 😎
    * 
    * But if for some reason you need, you can intercept the events:

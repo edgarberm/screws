@@ -141,7 +141,7 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
   onInputTextChange(event) {
     this.setStateProp('email', event.target.value)
   }
-  
+
   // eslint-disable-next-line no-unused-vars
   onInputNumberChange(event) {
     this.setStateProp('count', Number(event.target.value))
@@ -151,22 +151,38 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
     return html`
       <div class="app">
         <div class="content">
-          <h1>svdom</h1>
+          <svg
+            width="81"
+            height="81"
+            viewBox="0 0 81 81"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M20.641 75.282C39.7727 86.3277 64.2363 79.7728 75.282 60.641C86.3278 41.5092 79.7727 17.0457 60.641 6C41.5093 -5.0457 17.0457 1.50924 6 20.641C-5.04573 39.7728 1.50931 64.2363 20.641 75.282ZM48.7047 34.6743L56.7718 20.7017L49.8436 16.7017L41.9106 30.442L34.442 32.4432L20.7017 24.5102L16.7017 31.4384L30.6741 39.5054L32.5772 46.6079L24.5102 60.5803L31.4384 64.5803L39.6395 50.3756L46.3757 48.5707L60.5803 56.7718L64.5803 49.8436L50.6077 41.7765L48.7047 34.6743Z"
+              fill="white"
+            />
+          </svg>
+          <h1>screws</h1>
           <h3>Web Components without drama 🍿</h3>
-          
+
           <h2>What</h2>
           <p>
-            <strong>svdom</strong> is rooted in web components technology and introduces 
-            a lightweight layer for node reconciliation within the Shadow DOM, yielding
-            superior performance and a more seamless DX.
+            <strong>screws</strong> is rooted in web components technology and
+            introduces a lightweight layer for node reconciliation within the
+            Shadow DOM, yielding superior performance and a more seamless DX.
           </p>
           <p>
-            The core essence of svdom is to offer an uncomplicated and effective approach
-            to crafting custom elements on the web, all while harnessing the advantages
-            of both shadow and virtual DOMs.
+            The core essence of screws is to offer an uncomplicated and
+            effective approach to crafting custom elements on the web, all while
+            harnessing the advantages of both shadow and virtual DOMs.
           </p>
 
-          <a href="https://github.com/edgarberm/svdom" target="_blank">GitHub</a>
+          <a href="https://github.com/edgarberm/screws" target="_blank"
+            >GitHub</a
+          >
 
           <div class="container">
             <h2>Button</h2>

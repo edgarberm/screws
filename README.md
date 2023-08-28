@@ -1,7 +1,7 @@
 
 
 <p align="center">
-  <img src="./examples/src/screws-logo.svg" alt="screws logo" width="40px" />
+  <img src="./examples/src/screws-logo.svg" alt="screws logo" width="60px" />
 </p>
 
 <h1 align="center">
