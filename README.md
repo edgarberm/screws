@@ -15,10 +15,9 @@ Web Components without drama 🍿
 
 <br />
 
-> **NOTE:** This repos is intended for personal use and is not yet ready for production projects. Please use it at your own risk. 🚨
+> 🚨 **NOTE:** This is **not** another JavaScript framework/lib to build web components. This repo is designed for personal use and is not yet suitable for production projects. Please proceed with caution and use it at your own discretion.
 
 <br />
-
 ### Why
 
 This project stems from the necessity to wield potent and efficient tools for my personal projects and experiments, all while sidestepping the boilerplate overhead that often accompanies the initiation of a new JavaScript web project.
@@ -132,6 +131,20 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
 
 customElements.define('app-component', AppComponent)
 ```
+
+#### Bash Script
+
+The last features I've added is a Bash script that automates the process of generating components from a template. 
+This script, streamlines the creation of new components by reducing repetitive tasks.
+
+The script generates the necessary file and boilerplate code based on the provided component name, allowing you me
+focus more on the core functionality.
+
+```bash
+./core/screws.sh
+```
+
+And follow the steps.
 
 <br />
 
