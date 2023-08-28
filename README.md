@@ -4,7 +4,7 @@
   <img src="https://github.com/edgarberm/screws/blob/main/playground/src/screws-logo.svg" alt="screws logo" width="60px" />
 </p>
 
-<h1 align="center">
+<h1 align="center" style="margin: 0;">
   Screws
 </h1>
 
@@ -15,9 +15,11 @@ Web Components without drama 🍿
 
 <br />
 
-**NOTE:** This repos is intended for personal use and is not yet ready for production projects. Please use it at your own risk. 🚨
+<p align="center">
+  **NOTE:** This repos is intended for personal use and is not yet ready for production projects. Please use it at your own risk. 🚨
+</p>
 
-
+<br />
 
 ### Why
 
