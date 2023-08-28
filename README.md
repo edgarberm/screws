@@ -4,7 +4,7 @@
   <img src="https://github.com/edgarberm/screws/blob/main/playground/src/screws-logo.svg" alt="screws logo" width="60px" />
 </p>
 
-<h1 align="center" style="margin: 0;">
+<h1 align="center" style="margin-top: 4px;">
   Screws
 </h1>
 
