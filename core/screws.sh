@@ -16,18 +16,20 @@ RESET='\033[0m'
 # Menú inicial
 init_menu() {
   clear
-  echo -e ""
-  echo -e "${GREEN}${BOLD} "
-  echo -e " ___  ___ _ __ _____      _____"
-  echo -e "/ __|/ __| '__/ _ \ \ /\ / / __|"
-  echo -e "\__ \ (__| | |  __/\ V  V /\__ \\"
-  echo -e "|___/\___|_|  \___| \_/\_/ |___/"
-  echo -e "${REST}"
+  # echo -e ""
+  # echo -e "${GREEN}${BOLD} "
+  # echo -e " ___  ___ _ __ _____      _____"
+  # echo -e "/ __|/ __| '__/ _ \ \ /\ / / __|"
+  # echo -e "\__ \ (__| | |  __/\ V  V /\__ \\"
+  # echo -e "|___/\___|_|  \___| \_/\_/ |___/"
+  # echo -e "${REST}"
+  echo ""
+  echo -e "${PURPLE}${BOLD}SCREWS.SH_ ${RESET}"
   echo ""
   echo -e "${CYAN}Wellcome to the ${BOLD}screws.sh menu${RESET}${CYAN}. Here you can choose many tasks to deal with. ${RESET}"
   echo -e "${CYAN}For now, is an experimental feature and is under developent. Drop your feedback! ${RESET}"
   echo ""
-  echo -e "${PURPLE}${BOLD}Note:${RESET} ${GREY}Use the Up/Down arrows to navigate and press Enter to choose your option. ${RESET}"
+  echo -e "${BOLD}Note:${RESET} ${GREY}Use the Up/Down arrows to navigate and press Enter to choose your option. ${RESET}"
   echo ""
   echo ""
     for ((i=0; i<$num_options; i++)); do
@@ -45,19 +47,104 @@ options=('🍿 Create new component' '🐐 Go home')
 selected=0
 num_options=${#options[@]}
 exit_option=$(($num_options+1))
+exit_menu=false
+
 
 function create_component() {
-  echo "Creating a new component..."
-  # Agregar el código real para crear un componente aquí
-  # Por ejemplo, mostrar otro prompt para la nueva funcionalidad
-  read -p "Presiona Enter para continuar..."
+  echo "Creating a new component.."
+  echo -e "${GREY}Follow the steps.${RESET}"
+  echo ""
+  while true; do
+    echo -e "${CYAN}Write the path and the name (registry) for your component (ending with .js): ${RESET}"
+    read -p "" full_path
+
+    # Check .js extension
+    if [[ "$full_path" != *.js ]]; then
+      echo ""
+      echo -e "${RED}The component file should have a '.js' extension.${RESET}"
+      continue
+    fi
+
+    path=$(dirname "$full_path")    
+    component_name=$(basename "$full_path" .js)
+    
+    # Check component name
+    if [[ "$component_name" =~ ^[a-zA-Z]+-[a-zA-Z]+$ ]]; then
+      if [ -e "$full_path" ]; then
+        echo ""
+        echo -e "${RED}A file with the name '$full_path' already exists.${RESET}"
+        echo -e "${RED}Please choose a different name.${RESET}"
+        echo ""
+      else
+        mkdir -p "$path"
+        
+        touch "$full_path"
+        
+        IFS='-' read -ra name_parts <<< "$component_name"
+        capitalized_name=""
+        for part in "${name_parts[@]}"; do
+          capitalized_name+=$(echo $part | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')
+        done
+        
+        # core/index.js path
+        depth=$(($(echo "$path" | tr '/' '\n' | wc -l) - 1))
+        core_path=""
+        for ((i=1; i<=$depth; i++)); do
+          core_path+="../"
+        done
+        core_path+="core/index.js"
+        
+        template=$(cat <<- EOM
+import { ScrewComponent, html, css } from '$core_path'
+
+const style = css\`
+  :host {}
+\`
+
+export class $capitalized_name extends ScrewComponent(HTMLElement) {
+  static style = style
+
+  static props = {}
+
+  // eslint-disable-next-line no-unused-vars
+  onConnected() {}
+
+  render() {
+    return html\`
+      <div>
+        \${this.textContent}
+      </div>
+    \`
+  }
 }
 
+customElements.define('$full_path', $capitalized_name)
+EOM
+)
+
+        # Insertar el template en el archivo
+        echo "$template" > "$full_path"
+        
+        echo ""
+        echo -e "${GREEN}Component file '$full_path' created successfully!${RESET}"
+        sleep 2
+        echo ""
+        echo -e "${GREY}Exiting the script..${RESET}"
+        exit 0
+      fi
+    else
+      echo ""
+      echo -e "${RED}The component name should consist of two words separated by a hyphen.${RESET}"
+    fi
+  done
+}
+
+
 function go_home() {
-  echo "Going home..."
-  # Agregar el código real para volver a la página principal aquí
-  # Por ejemplo, mostrar el menú principal de nuevo
-  read -p "Presiona Enter para continuar..."
+  echo -e "Going home.."
+  echo -e "${GREY}Press Enter ⏎ to continue${RESET}"
+  # Lol
+  read -p ""
 }
 
 # Activar modo de lectura de teclas
