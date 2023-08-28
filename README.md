@@ -1,6 +1,6 @@
 
 
-<p align="center">
+<p align="center" style="margin-top: 0;">
   <img src="https://github.com/edgarberm/screws/blob/main/playground/src/screws-logo.svg" alt="screws logo" width="60px" />
 </p>
 
