@@ -26,7 +26,7 @@ export class IconComponent extends ScrewComponent(HTMLElement) {
 
   static props = {
     size: 24,
-    color: 'var(--grey-6)'
+    color: 'var(--grey-1)'
   }
 
   icon = undefined
