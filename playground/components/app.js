@@ -3,6 +3,7 @@ import { ScrewComponent, html, css } from '../../core/index.js'
 // Import child components
 import './button.js'
 import './circle.js'
+import './icon-component.js'
 
 const style = css`
   :host {
@@ -202,6 +203,18 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
               <button-sv size="large" @click="${() => this.onClickCount(100)}">
                 Add 100
               </button-sv>
+            </div>
+          </div>
+          
+          <div class="container">
+            <h2>Icon</h2>
+            <p>Testing load SVG sources.</p>
+            
+            <div class="component-presentation row">
+              <icon-component icon="cancel" color="#9377E3"></icon-component>
+              <icon-component icon="panel-bottom" color="#3082FC"></icon-component>
+              <icon-component icon="drag-indicator" color="#007CF0"></icon-component>
+              <icon-component icon="autorenew" color="#00DFD8"></icon-component>
             </div>
           </div>
 
