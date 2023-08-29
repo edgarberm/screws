@@ -1,9 +1,10 @@
 import { ScrewComponent, html, css } from '../../core/index.js'
 
 // Import child components
-import './button.js'
+import './button-component.js'
 import './circle.js'
 import './icon-component.js'
+import './badge-component.js'
 
 const style = css`
   :host {
@@ -22,7 +23,6 @@ const style = css`
     margin-top: 40px;
   }
   .logo {
-
   }
   h1 {
     margin: 0 0 32px 0;
@@ -100,7 +100,7 @@ const style = css`
   .presentation .description {
     display: flex;
     flex-direction: row;
-    align-items: center; 
+    align-items: center;
     justify-content: space-between;
     width: 100%;
     height: 40px;
@@ -176,9 +176,14 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
       <div class="app">
         <div class="content">
           <div class="logo">
-            <icon-component icon="logo" viewBox="0 0 81 81" size="40" color="#9377E3"></icon-component>
+            <icon-component
+              icon="logo"
+              viewBox="0 0 81 81"
+              size="40"
+              color="#9377E3"
+            ></icon-component>
           </div>
-          
+
           <h1>screws</h1>
           <h3>Web Components without drama 🍿</h3>
 
@@ -205,7 +210,7 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
             <p class="label">
               State count: <strong>${this.state.count}</strong>
             </p>
-          
+
             <div class="presentation">
               <div class="component row">
                 <button-sv size="small" @click=${this.onClickCount}>
@@ -214,7 +219,10 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
                 <button-sv size="default" @click=${this.onClickCount}>
                   Default
                 </button-sv>
-                <button-sv size="large" @click="${() => this.onClickCount(100)}">
+                <button-sv
+                  size="large"
+                  @click="${() => this.onClickCount(100)}"
+                >
                   Large
                 </button-sv>
               </div>
@@ -254,17 +262,43 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
             <h2>Icon</h2>
             <p>Testing load SVG sources.</p>
 
-            <div class="component row">
-              <icon-component icon="cancel" color="#9377E3"></icon-component>
-              <icon-component
-                icon="panel-bottom"
-                color="#3082FC"
-              ></icon-component>
-              <icon-component
-                icon="drag-indicator"
-                color="#007CF0"
-              ></icon-component>
-              <icon-component icon="autorenew" color="#00DFD8"></icon-component>
+            <div class="presentation">
+              <div class="component row">
+                <icon-component icon="cancel" color="#9377E3"></icon-component>
+                <icon-component
+                  icon="panel-bottom"
+                  color="#3082FC"
+                ></icon-component>
+                <icon-component
+                  icon="drag-indicator"
+                  color="#007CF0"
+                ></icon-component>
+                <icon-component
+                  icon="autorenew"
+                  color="#00DFD8"
+                ></icon-component>
+              </div>
+
+              <div class="description">
+                <p>Icons bla bla bla</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <h2>Badge</h2>
+            <p>Badge component bla bla bla.</p>
+
+            <div class="presentation">
+              <div class="component row">
+                <badge-component>
+                  <icon-component icon="notifications"></icon-component>
+                </badge-component>
+              </div>
+
+              <div class="description">
+                <p>Badge</p>
+              </div>
             </div>
           </div>
 

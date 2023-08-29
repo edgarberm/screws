@@ -113,9 +113,15 @@ export class ButtonComponent extends ScrewComponent(HTMLElement) {
         id="${this.props.id}"
         class="button ${this.props.size}"
       >
-        ${this.props.iconstart ? this.getIconStart() : ''}
-        ${this.textContent}
-        ${this.props.iconend ? this.getIconEnd() : ''}
+        <slot name="start">
+          ${this.props.iconstart ? this.getIconStart() : ''}
+        </slot>
+        <slot name="label">
+          ${this.textContent}
+        </slot>
+        <slot name="end">
+          ${this.props.iconend ? this.getIconEnd() : ''}
+        </slot>
       </button>
     `
   }
