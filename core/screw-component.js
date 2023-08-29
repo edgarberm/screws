@@ -58,14 +58,16 @@ export const ScrewComponent = (SuperClass /** @type {HTMLElement} */) =>
     /**
      * First time component initialization we need to render all the markup
      */
-    connectedCallback() {
+    async connectedCallback() {
       this.setProperties.call(this)
       super.connectedCallback?.()
-      this.onConnected?.()
+      await this.onConnected?.()
 
       this.constructor.render.call(this)
+      this.constructor.afterComponentRender.call(this)
       this.constructor.addInitialEventListeners.call(this)
     }
+
 
     /**
      * @internal
@@ -138,7 +140,12 @@ export const ScrewComponent = (SuperClass /** @type {HTMLElement} */) =>
 
       if (this.SVDOM !== currentContent) {
         this.component.innerHTML = this.SVDOM
+        this.constructor.afterComponentRender.call(this)
       }
+    }
+
+    static afterComponentRender() {
+      this.afterComponentRender?.()
     }
 
     /**
