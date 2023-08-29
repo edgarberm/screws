@@ -1,13 +1,24 @@
 import { ScrewComponent, html, css } from '../../core/index.js'
 
 const style = css`
-  :host {}
+  :host {
+    display: flex;
+  }
+  [data-component-name] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `
-
-console.log('entra');
 
 const XMLNS = 'http://www.w3.org/2000/svg'
 const PATH = './src/icons/icon-'
+
+/**
+ * @todo
+ * 
+ * Cache don's work!
+ */
 const cache = new Map()
 
 export class IconComponent extends ScrewComponent(HTMLElement) {
@@ -26,21 +37,18 @@ export class IconComponent extends ScrewComponent(HTMLElement) {
   async afterComponentRender() {
     const { icon } = this.props
 
-    if (cache.has(icon)) {
-      console.log('Cache')
-      const svg = cache.get(icon)
-      this.appendSVG(svg)
-      return
-    }
+    // if (cache.has(icon)) {
+    //   console.log('Cache')
+    //   const svg = cache.get(icon)
+    //   this.appendSVG(svg)
+    //   return
+    // }
     
     const path = await this.fetchSVG(icon)
     const svg = await this.createSVG(path)
-    console.log(svg)
-    this.appendSVG(svg)
 
-    console.log(icon)
-    console.log(cache)
-    cache.set(this.props.icon, svg)
+    this.appendSVG(svg)
+    // cache.set(this.props.icon, svg)
   }
 
   async fetchSVG(icon) {
@@ -55,7 +63,7 @@ export class IconComponent extends ScrewComponent(HTMLElement) {
     const { color, size } = this.props
     const svg = document.createElementNS(XMLNS, 'svg')
 
-    svg.setAttribute('viewBox', '0 0 24 24')
+    svg.setAttribute('viewBox', this.getAttribute('viewBox') || '0 0 24 24')
     svg.setAttribute('width', size)
     svg.setAttribute('height', size)
     svg.setAttribute('fill', color)

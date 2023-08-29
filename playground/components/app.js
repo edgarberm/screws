@@ -7,18 +7,22 @@ import './icon-component.js'
 
 const style = css`
   :host {
+    margin: 0;
     padding: 0;
-    color: #ededed;
   }
   .app {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 200px;
+    color: #0a0a0a;
   }
   .content {
     width: 75%;
     margin-top: 40px;
+  }
+  .logo {
+
   }
   h1 {
     margin: 0 0 32px 0;
@@ -29,16 +33,16 @@ const style = css`
     font-size: 28px;
   }
   p {
-    color: var(--grey-6);
+    color: var(--grey-4);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.6;
   }
   strong {
-    color: var(--grey-8);
+    color: var(--grey-1);
   }
   a {
-    color: var(--grey-8);
+    color: var(--grey-1);
   }
   .container {
     display: flex;
@@ -55,7 +59,7 @@ const style = css`
     width: 300px;
     height: 40px;
     padding: 0 12px;
-    background-color: var(--grey-1);
+    background-color: var(--grey-8);
     border: 1px solid var(--grey-2);
     border-radius: 6px;
 
@@ -72,21 +76,40 @@ const style = css`
     outline-style: solid;
     outline-color: var(--grey-6);
   }
-  .component-presentation {
+  .presentation {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: auto;
-    padding: 24px;
-    border: 1px solid var(--grey-2);
+    border: 1px solid var(--grey-7);
     border-radius: 6px;
+    overflow: hidden;
   }
-  .component-presentation.row {
+  .presentation .component {
+    display: flex;
+    padding: 24px;
+  }
+  .presentation .component.row {
     flex-direction: row;
     justify-content: space-between;
   }
-  .component-presentation.col {
+  .presentation .component.col {
     flex-direction: column;
     justify-content: flex-start;
+  }
+  .presentation .description {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    padding: 0 24px;
+    background-color: var(--grey-8);
+  }
+  .description p {
+    font-weight: 400;
+    color: var(--grey-5);
   }
 `
 
@@ -152,20 +175,10 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
     return html`
       <div class="app">
         <div class="content">
-          <svg
-            width="81"
-            height="81"
-            viewBox="0 0 81 81"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M20.641 75.282C39.7727 86.3277 64.2363 79.7728 75.282 60.641C86.3278 41.5092 79.7727 17.0457 60.641 6C41.5093 -5.0457 17.0457 1.50924 6 20.641C-5.04573 39.7728 1.50931 64.2363 20.641 75.282ZM48.7047 34.6743L56.7718 20.7017L49.8436 16.7017L41.9106 30.442L34.442 32.4432L20.7017 24.5102L16.7017 31.4384L30.6741 39.5054L32.5772 46.6079L24.5102 60.5803L31.4384 64.5803L39.6395 50.3756L46.3757 48.5707L60.5803 56.7718L64.5803 49.8436L50.6077 41.7765L48.7047 34.6743Z"
-              fill="white"
-            />
-          </svg>
+          <div class="logo">
+            <icon-component icon="logo" viewBox="0 0 81 81" size="40" color="#9377E3"></icon-component>
+          </div>
+          
           <h1>screws</h1>
           <h3>Web Components without drama 🍿</h3>
 
@@ -192,28 +205,65 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
             <p class="label">
               State count: <strong>${this.state.count}</strong>
             </p>
+          
+            <div class="presentation">
+              <div class="component row">
+                <button-sv size="small" @click=${this.onClickCount}>
+                  Small
+                </button-sv>
+                <button-sv size="default" @click=${this.onClickCount}>
+                  Default
+                </button-sv>
+                <button-sv size="large" @click="${() => this.onClickCount(100)}">
+                  Large
+                </button-sv>
+              </div>
 
-            <div class="component-presentation row">
-              <button-sv ize="small" @click="${this.onClickCount}">
-                <strong>＋</strong>
+              <div class="description">
+                <p>Buttons</p>
+              </div>
+            </div>
+
+            <div class="component row">
+              <button-sv
+                size="small"
+                iconstart="autorenew"
+                @click=${this.onClickCount}
+              >
+                Start
               </button-sv>
-              <button-sv size="default" @click=${this.onClickCount}>
-                Increment
+              <button-sv
+                size="default"
+                iconend="autorenew"
+                @click=${this.onClickCount}
+              >
+                End
               </button-sv>
-              <button-sv size="large" @click="${() => this.onClickCount(100)}">
-                Add 100
+              <button-sv
+                size="large"
+                iconstart="autorenew"
+                iconend="autorenew"
+                @click="${() => this.onClickCount(100)}"
+              >
+                Double
               </button-sv>
             </div>
           </div>
-          
+
           <div class="container">
             <h2>Icon</h2>
             <p>Testing load SVG sources.</p>
-            
-            <div class="component-presentation row">
+
+            <div class="component row">
               <icon-component icon="cancel" color="#9377E3"></icon-component>
-              <icon-component icon="panel-bottom" color="#3082FC"></icon-component>
-              <icon-component icon="drag-indicator" color="#007CF0"></icon-component>
+              <icon-component
+                icon="panel-bottom"
+                color="#3082FC"
+              ></icon-component>
+              <icon-component
+                icon="drag-indicator"
+                color="#007CF0"
+              ></icon-component>
               <icon-component icon="autorenew" color="#00DFD8"></icon-component>
             </div>
           </div>
@@ -221,7 +271,7 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
           <div class="container">
             <h2>Input</h2>
 
-            <div class="component-presentation col">
+            <div class="component col">
               <input
                 type="email"
                 name="input"
@@ -247,7 +297,7 @@ export class AppComponent extends ScrewComponent(HTMLElement) {
             <h2>Experiment</h2>
             <p>Change circle size! 🍿</p>
 
-            <div class="component-presentation col">
+            <div class="component col">
               <circle-component></circle-component>
             </div>
           </div>
